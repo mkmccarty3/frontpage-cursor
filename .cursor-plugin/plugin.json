@@ -1,0 +1,12 @@
+{
+  "name": "frontpage",
+  "version": "0.1.0",
+  "description": "Read and edit existing Frontpage websites, check previews, and manage People and email with separate consent. Publish through Frontpage.",
+  "author": { "name": "Frontpage", "email": "support@frontpage.host" },
+  "homepage": "https://frontpage.host/mcp-server",
+  "license": "MIT",
+  "logo": "./assets/icon.svg",
+  "keywords": ["frontpage", "website", "astro", "people", "email", "mcp"],
+  "skills": "./skills",
+  "mcpServers": "./mcp.json"
+}
