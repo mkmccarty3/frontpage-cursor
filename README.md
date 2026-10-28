@@ -56,3 +56,38 @@ Support: support@frontpage.host.
 The MIT license covers this package only. It does not license Frontpage's
 hosted service, private backend or trademarks. The icon is Frontpage's current
 purple mark, reused from the official brand asset without redrawing it.
+
+
+## Business permissions
+
+This release adds separate optional business read/manage permissions for
+analytics, usage, forms/inbox, Store, Support and task/routine records. Source
+and People/email permissions stay separate. Existing grants gain nothing;
+reconnect and explicitly select the business access you want. Both choices
+start off. Your current role and each site's eligible plan still apply.
+
+Management can change the running catalog/form settings and send Support
+replies, guidance or retries on your instruction. Payments stays read-only.
+Website task start/retry, routine create/edit/run/resume, financial/account/
+credential changes and unfinished Booking are excluded. Cancel and pause do
+not start work. Public setup and limits: https://frontpage.host/developers/mcp.
+
+Client packages contain only settings and guidance. They use the same hosted
+MCP/OAuth services; no CLI, customer editor or internal agent changes are needed.
+
+## Analytics reports
+
+With business:read consent, use `frontpage_analytics_dashboard` for the existing
+site-wide UI report and `frontpage_analytics_page_detail` with an exact `path`
+for one page. The page report includes views, visitors, sessions, time/scroll,
+trends, sources, next pages, audience, frustration, errors and performance.
+Use days 1/7/30/90 (default 30), or both from and to. Page filters are device,
+country, source, referrer, os and browser; path is a separate field. Retain
+readAt, range, filters and version on continuations. Sparse samples remain null.
+
+The existing query, summary, timeseries, funnel and compare tools remain. Filter
+type=pageview for view counts. A funnel measures session overlap, not event
+order. Raw SQL is unavailable through MCP. UI View all pagination and complete
+labeled-click reporting remain separate coverage limits. Shared definitions:
+https://frontpage.host/developers/analytics. MCP setup/tool limits:
+https://frontpage.host/developers/mcp.
