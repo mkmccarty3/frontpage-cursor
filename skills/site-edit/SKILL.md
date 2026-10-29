@@ -1,6 +1,6 @@
 ---
 name: site-edit
-description: Read and edit an existing Frontpage website through its Frontpage MCP connection, then check the exact preview revision.
+description: Manage existing Frontpage websites, email campaigns, People CRM, articles, AI support and analytics with the access the user approves.
 ---
 
 Use this workflow when the user asks for changes to an existing Frontpage site.

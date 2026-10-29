@@ -103,3 +103,12 @@ unpublish does not hide it. Sites without a custom domain return
 NO_PUBLISHED_SURFACE. Changing subdomain visibility stays in the existing
 Frontpage browser flow. Status reports the publication surface and whether a
 custom domain is configured; a saved source revision is not a privacy change.
+
+
+## Publisher and directory availability
+
+Frontpage is the product. Rostra Labs, Inc. publishes this package; support is
+support@frontpage.host. The current server has 136 native tools. Marketplace
+review and public publication are separate from this package release and direct
+MCP setup. Use the current advertised schemas and your approved permissions.
+Booking and unattended website-agent execution remain outside MCP.
