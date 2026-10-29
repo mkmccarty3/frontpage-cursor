@@ -27,6 +27,8 @@ For scheduled email, saving a dated draft never confirms a send. Use the existin
 The public operation references are https://frontpage.host/developers/people and https://frontpage.host/developers/mail. These describe shared services; only operations in the MCP tool schema are callable through this connection. The CLI has additional commands. No missing MCP operation may be replaced with shell access, an extracted CLI key or a hidden API request.
 
 
+A new Email series follows the native service default and may start On. Before creating a series, read its operation guide and explain that default. Obtain the user’s instruction before creating active automation; do not promise a paused series until you have paused and read it back. An unscheduled one-off draft is the safe choice when the user only asks to prepare a message.
+
 ## Business data
 
 Source and CRM access grant no business access. Business reads require explicit

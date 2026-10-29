@@ -35,8 +35,7 @@ acceptance from the CLI test.
 Read site context and source before editing. Keep the observed revision and
 reuse the exact operation ID and payload on an uncertain retry. A saved source
 revision is not a ready preview: check that exact revision before reporting it.
-Production publication, source deletion, billing and team management remain
-outside this connection.
+Publishing and explicit source deletion require expanded Read and manage websites consent and the safeguards below. Billing and team management remain outside this connection.
 
 For People/email, read the MCP operation guide first. Management permission
 can send email or activate automation on your explicit instruction; existing
