@@ -4,7 +4,7 @@
       "url": "https://app.frontpage.host/api/mcp",
       "auth": {
         "CLIENT_ID": "frontpage-cursor",
-        "scopes": ["sites:read", "sites:write", "crm:read", "crm:write", "offline_access", "business:read", "business:write"]
+        "scopes": ["sites:read", "sites:write", "sites:operate", "sites:manage", "crm:read", "crm:write", "offline_access", "business:read", "business:write"]
       }
     }
   }

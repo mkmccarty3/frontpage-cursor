@@ -1,7 +1,7 @@
 {
   "name": "frontpage",
-  "version": "0.2.1",
-  "description": "Read and edit eligible Frontpage sites, check previews, and use People, email and business tools with separate consent. Publish in Frontpage.",
+  "version": "0.3.0",
+  "description": "Read and manage eligible Frontpage websites, check exact previews, and use People, email and business tools with separate consent.",
   "author": { "name": "Frontpage", "email": "support@frontpage.host" },
   "homepage": "https://frontpage.host/mcp-server",
   "license": "MIT",

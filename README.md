@@ -2,7 +2,7 @@
 
 Connect an existing Frontpage account to inspect website source, edit allowed
 text files, check previews, and use People and email with separate consent.
-Publish websites through Frontpage. This package installs no local server,
+Manage websites through the MCP connection with expanded consent, or through Frontpage. This package installs no local server,
 hooks, commands, API keys or background tasks.
 
 ## Connect
@@ -91,3 +91,15 @@ order. Raw SQL is unavailable through MCP. UI View all pagination and complete
 labeled-click reporting remain separate coverage limits. Shared definitions:
 https://frontpage.host/developers/analytics. MCP setup/tool limits:
 https://frontpage.host/developers/mcp.
+
+## Website management update
+
+The six named website actions use expanded Read and manage websites consent. Existing grants stay unchanged until reauthorization. Read current site status for the publication version; publish only the exact reviewed ready build. Unpublish and article deletion require Admin. Redirect removal also requires existing Manage site settings consent. Source deletion and restore build previews without publishing. Normal client approval, roles, plan restrictions, current revisions and retry receipts apply. See https://frontpage.host/developers/mcp. This package update does not claim a new marketplace review or approval.
+
+
+Publication tools affect the configured custom domain. A public Frontpage
+subdomain continues to serve its preview under the existing visibility setting;
+unpublish does not hide it. Sites without a custom domain return
+NO_PUBLISHED_SURFACE. Changing subdomain visibility stays in the existing
+Frontpage browser flow. Status reports the publication surface and whether a
+custom domain is configured; a saved source revision is not a privacy change.
