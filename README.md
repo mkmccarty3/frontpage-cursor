@@ -1,5 +1,10 @@
 # Frontpage for Cursor
 
+This is the held 0.9.0 candidate for the combined Frontpage MCP release. It
+uses the same hosted service baseline as the Claude and ChatGPT/Codex
+candidates. The existing public 0.3.3 package and marketplace review remain
+separate; a candidate build does not publish an update.
+
 Connect an existing Frontpage account to inspect website source, edit allowed
 text files, check previews, and use People and email with separate consent.
 Manage websites through the MCP connection with expanded consent, or through Frontpage. This package installs no local server,
