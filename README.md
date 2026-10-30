@@ -68,7 +68,7 @@ start off. Your current role and each site's eligible plan still apply.
 Management can change the running catalog/form settings and send Support
 replies, guidance or retries on your instruction. Payments stays read-only.
 Website task start/retry, routine create/edit/run/resume, financial/account/
-credential changes and unfinished Booking are excluded. Cancel and pause do
+credential changes are excluded. Native Booking uses the separate guidance below. Cancel and pause do
 not start work. Public setup and limits: https://frontpage.host/developers/mcp.
 
 Client packages contain only settings and guidance. They use the same hosted
@@ -107,7 +107,58 @@ custom domain is configured; a saved source revision is not a privacy change.
 ## Publisher and directory availability
 
 Frontpage is the product. Rostra Labs, Inc. publishes this package; support is
-support@frontpage.host. The current server has 136 native tools. Marketplace
+support@frontpage.host. The direct server has 177 native tools after renewed Business consent for
+Booking; earlier grants retain 138. OpenAI uses 273 named tools, or 234 without
+Booking, for the same permitted operations. Marketplace
 review and public publication are separate from this package release and direct
 MCP setup. Use the current advertised schemas and your approved permissions.
-Booking and unattended website-agent execution remain outside MCP.
+Native Booking follows its existing rollout and renewed Business consent.
+Unattended website-agent execution remains excluded.
+
+The direct server also offers `frontpage_capture_screenshot` and
+`frontpage_get_screenshot` with existing read access, protected PNG delivery
+and continuation. See the MCP guide for capture limits and client coverage.
+Directory approval and the published bundle remain separate from server updates.
+
+## Booking
+
+The direct server provides all 39 current native Booking actions as
+`frontpage_booking_<action>`, for example `frontpage_booking_booking_create`.
+Use `frontpage_get_module_docs` with `key: "booking"`, then Booking `status`.
+Booking follows the existing native site/provider rollout. A plan or connection
+alone does not enable it. No retired form engine is used.
+
+Reconnect and approve Business read or read/manage to include Booking. Earlier
+Business grants do not gain access. General People lookup still requires CRM
+consent; native reservation changes may create a contact and send their normal
+Booking notifications. Act only on the user's instruction.
+
+Admins manage settings, resources and types. Editors and Admins manage bookings
+and manual blocks. Viewers can use the restricted catalogs, read availability
+and manage their own hours and authorized calendars. Generic source/business
+write flags do not replace these native per-action checks.
+
+Keep the complete native value, numeric `expectedRevision` and stable
+`requestKey` after an uncertain write. Booking uses native receipts, not the
+generic MCP `operationId` wrapper. First settings/own-hours saves may use revision
+zero. `booking_withdraw` cancels the whole reservation; `booking_decline` rejects
+a pending reschedule while keeping its confirmed booking.
+
+Native data is in `data`, or versioned JSON `content` when large. The transient
+retry flag is `replayed` on the result envelope. Native `nextCursor` goes in
+`query.before`; text continuation uses `textOffset` and `expectedTextVersion`.
+Restart if the result changes. Accepted effects do not prove inbox delivery.
+
+Use `connect_request` for the existing authenticated human setup handoff. Never
+ask for calendar credentials or a private feed URL in chat. External events
+share busy times only; `event_open` returns owner-authenticated navigation, not
+event contents. Account sign-in may still need calendar selection. Dismissing a
+setup request does not connect a calendar.
+
+Package publication and directory approval are separate. Use only tools
+advertised by the current connection; a direct-server change does not prove
+marketplace approval.
+
+## Appointment start times
+
+Appointment types use `value.startIntervalMinutes:null` for Automatic (match the current `durationMinutes`), or 5/10/15/20/30/45/60 for a fixed interval. Use the existing `frontpage_booking_type_save`; include the complete value, current revision and stable request key. Omit the field on updates to keep it. Starts align to midnight in the business time zone; buffers/conflicts remove starts without shifting them. New bookings and rescheduling use the current type rule. Stays are unchanged. Read availability and use its exact returned slot; do not calculate times in client code.
