@@ -43,6 +43,33 @@ marker. A screenshot can certify only the exact built revision. Preserve any
 site-specific layout props and components; this example is not permission to
 replace existing pages or publish. Use noindex for temporary review pages.
 
+## Customer name fields
+
+Use `firstName` and `lastName` for customer name input. `name` is the combined
+display value. Keep compound given and family names in their supplied fields. Each
+part allows 100 UTF-16 code units after normalization; the joined display allows
+200 including its space. Shared services trim and collapse whitespace.
+
+People names are optional; a contact needs a valid email or phone. New Booking and
+Payments customers need a first name and email; last name is optional. Support
+keeps its configured required, optional or off collection rule; required means
+first name. A name is never identity verification or marketing consent.
+
+For `frontpage_people_contacts_add`, send `{slug,payload:{email,firstName,lastName}}`.
+For `frontpage_people_contacts_update`, read the contact first, then send
+`{slug,payload:{personId,lastName:null,expected:{firstName,lastName}}}` with the
+actual observed values. Omitted fields stay unchanged. Empty text or null clears
+only that part; clearing both also clears the combined name. Source ingestion
+preserves a populated saved name pair. Use a deliberate edit to correct it. Do not
+pass an `operation` selector.
+
+Mail recipients and Payments recipient inputs accept the same parts. Booking uses
+its generated customer schema. Do not replace a saved customer with a new record
+to change their name. `{{first_name}}` uses the saved compound first name; a
+nonblank explicit override wins, otherwise it falls back to the saved value, then
+`there`. An explicit `{{last_name}}` value, including blank, wins; otherwise use the
+saved last name or empty text. Already queued mail keeps its captured values.
+
 ## People and email requests
 
 Source-file access grants no CRM access. Use the separately named People/email tools only with explicit `crm:read` or `crm:write` consent. The same tool set is available through every supported client. For example, use `frontpage_people_groups_create`, `frontpage_people_groups_get` and `frontpage_people_groups_archive` for groups; use `frontpage_save_mail_editor`, `frontpage_get_mail_email` and `frontpage_delete_mail_email` for an unsent draft. Each tool fixes its operation and declares its payload; never pass an operation selector. Existing native roles, plan, versions, review tokens, request keys and pagination remain. Membership changes may run normal rules. Never send, schedule, enroll or activate without the user's instruction; never infer marketing consent. Preserve the exact native request key/payload on retry and inspect uncertain outcomes instead of creating duplicates. Do not edit site source to change customer records. Groups/stages replace global status/tag fields.
@@ -276,8 +303,8 @@ may both reach one inbox; do not change recipients or suppress either purpose to
 make tests quieter. Read live Booking status and its `providerSetup` before offering
 calendar setup. A successful build is not a visual test of the complete flow.
 
-Native Booking is available on Starter and higher plans, including Internal.
-The MCP connection keeps its existing Scale/Internal eligibility. Google Calendar
+Native Booking and MCP access are available on every plan, including Free.
+Setup, owner activation, roles, consent and usage limits still apply. Google Calendar
 and iCal setup are available; new Outlook setup is hidden. Existing Outlook
 connections remain intact. Customer lookup returns contact fields only, not full
 People access. Use `frontpage_booking_customers_list` and
@@ -401,9 +428,10 @@ credential. Source ZIP downloads keep their separate export tool and bounds.
 
 ## Common catalog release
 
-Server 0.14.1 has one 339-tool full catalog for every client, including 102 named
+Server 0.15.0 has one 339-tool full catalog for every client, including 102 named
 People/email operations and 24 Payments tools. Booking/agent consent controls
-their families equally. Package publication is held; use only advertised tools.
+their families equally. Use only tools advertised by the current connection;
+provider package and hosted-catalog approval are separate steps.
 For client uploads, pass exactly one selected `file` reference or completed
 media `transferId` to `frontpage_upload_client_file`, with a stable operationId.
 Selected references accept only the fixed HTTPS files.oaiusercontent.com host;

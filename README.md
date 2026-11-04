@@ -34,7 +34,7 @@ Learn more about [Frontpage](https://frontpage.host) and the [Frontpage MCP serv
 
 ## Connect
 
-Download [Frontpage 0.14.1](https://github.com/mkmccarty3/frontpage-cursor/releases/tag/v0.14.1). For direct setup, copy the frontpage entry from mcp.json into the project's .cursor/mcp.json
+Download [Frontpage 0.15.0](https://github.com/mkmccarty3/frontpage-cursor/releases/tag/v0.15.0). For direct setup, copy the frontpage entry from mcp.json into the project's .cursor/mcp.json
 or the user's MCP settings. Open Cursor's MCP settings and connect Frontpage.
 The public client ID frontpage-cursor is not a secret; add no client secret.
 
@@ -55,10 +55,10 @@ Installing the package grants no account access. Marketplace availability follow
 
 Connect an existing Frontpage account, choose the sites and access to share,
 then ask for the work you want done. Every request checks the site's current
-plan and your role. MCP access requires an eligible Scale or Internal site.
+plan and your role. MCP access is included on every plan, including Free.
 Installation alone grants no account access.
 
-The shared 0.14.1 server has 339 named tools. Discovery has 324 without the
+The shared 0.15.0 server has 339 named tools. Discovery has 324 without the
 optional agents permission, or 281 without Business read or agents. The same
 tool names, inputs, outputs and permission rules apply to every client.
 
@@ -82,6 +82,18 @@ Read the bundled skill for exact tools, limits and retries. It contains the
 same operational guidance in each provider format. Use only tools advertised
 by the actual connection; a package version does not prove a provider refreshed
 its hosted catalog.
+
+## Customer names
+
+Use first and last name fields to keep customer details consistent across People,
+Booking, Payments and email. Compound names stay together. People permits unnamed
+contacts with an email or phone; a new Booking or Payments customer needs a first
+name and email. Last name is optional. Names never verify a customer’s identity.
+
+The bundled guide explains structured fields, clearing one part, reviewed updates
+and first/last-name email variables. The CLI provides `--first-name` and
+`--last-name`; its commands and manuals ship in the separate `frontpage-host` npm
+package.
 
 ## Website edits and previews
 
@@ -119,7 +131,7 @@ Booking only on instruction. Setup never publishes a website page.
 
 Booking contact lookup returns names, email and phone through its two contact
 tools; full CRM data needs separate People permission. Native Booking itself
-supports Starter and higher plans, while MCP keeps its own eligibility rule.
+is available on every plan, including Free. Setup, roles and usage limits still apply.
 
 For Support, a site Admin uses setup_get/save/complete with current setup and
 settings revisions and the required email policy approval. Drafting reserves no
@@ -197,9 +209,13 @@ receipts. These results do not certify every tool, untested financial actions,
 Cursor hosted agents or Grok Build direct/headless OAuth. Interactive Grok Build
 uses the account's managed Grok connector.
 
-This 0.14.1 package is a locally prepared candidate. Submissions, Registry
-updates and publication remain held. Installed listings may still expose older
-versions or catalogs. A checked archive is not an uploaded or approved release.
+The new name-field contracts and instructions are qualified separately from the
+November 3 client workflow checks above. Those older checks do not prove a provider
+has refreshed its saved catalog.
+
+Provider packages, hosted tool catalogs and marketplace listings have separate
+review and publication steps. Check the actual listing and connection: a package
+version alone does not prove that its hosted catalog has been refreshed.
 
 ## Help and license
 
