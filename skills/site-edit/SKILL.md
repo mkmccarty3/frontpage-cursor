@@ -82,7 +82,7 @@ complete; it is not the manual membership-count tool.
 
 For scheduled email, saving a dated draft never confirms a send. Use the existing campaign preview and confirmation fields (content version, audience, eligible count and timing); keep the stable request key. `scheduleLocal` accepts local `dateTime` plus IANA `timeZone`; `scheduledAt` is an alternative ISO timestamp with timezone. Before queueing starts, unschedule returns a confirmed scheduled email to Draft, while reschedule changes only its time. Read the current campaign/version before either action. An older accepted retry cannot undo a later change. Sent means provider acceptance; check delivery history for delivery.
 
-The public operation references are https://frontpage.host/developers/people and https://frontpage.host/developers/mail. These describe shared services; only operations in the MCP tool schema are callable through this connection. The CLI has additional commands. No missing MCP operation may be replaced with shell access, an extracted CLI key or a hidden API request.
+The public operation references are https://frontpage.host/developers/people and https://frontpage.host/developers/mail. These describe shared services; only operations in the MCP tool schema are callable through this connection. The CLI has additional commands. If an action is absent from the MCP schema, stop and explain that it is unavailable through this connection. Do not run shell commands or make direct API requests to perform it.
 
 
 A new Email series follows the native service default and may start On. Before creating a series, read its operation guide and explain that default. Obtain the user’s instruction before creating active automation; do not promise a paused series until you have paused and read it back. An unscheduled one-off draft is the safe choice when the user only asks to prepare a message.
@@ -163,6 +163,11 @@ and exact payload after a lost response. Read back status/history; an uncertain
 action never justifies retrying with a new ID. Never claim a save is published.
 
 
+Connecting or publishing to a custom domain requires Starter or higher. Free sites
+can still buy domains, edit, save, and preview. A downgrade keeps an existing live
+site online; the next custom-domain publish returns CUSTOM_DOMAIN_PLAN_REQUIRED.
+Do not disconnect a domain or unpublish a site to enforce plan access.
+
 Publication tools affect the configured custom domain. A public Frontpage
 subdomain continues to serve its preview under the existing visibility setting;
 unpublish does not hide it. Sites without a custom domain return
@@ -210,8 +215,9 @@ may need its normal provider upgrade before it exposes them.
 ## Frontpage agents and routines
 
 This separate connection option starts off: **Allow Frontpage agents and routines**.
-Without it, no task or routine tools are available, including reads, cancel and
-pause. Select this option explicitly when connecting; it stays unchecked until chosen.
+Without it, task and routine calls are denied, including reads, cancel and
+pause. Discovery still describes their required permission. Select this option
+explicitly when connecting; it stays unchecked until chosen.
 
 With it, use `frontpage_list_agent_sites` to find eligible account sites, then
 `frontpage_start_task`, `frontpage_retry_task` and the task read/cancel tools.
@@ -356,6 +362,15 @@ email request; it never verifies an address on behalf of a visitor. Session
 revocation signs that conversation's visitors out. Preserve native roles,
 identity verification and settings versions. Do not test against customer intake.
 
+For `frontpage_list_files`, continue with `nextOffset` as `offset`, keeping the
+same `prefix` and returned `revision`. If the revision changes, restart at zero.
+For `frontpage_store_import_products`, supply either up to 20 explicit product
+`files` or the inspected `sourceRevision`, never both. A source scan uses that
+revision even when product files cannot be saved through MCP. A stale revision
+returns `REVISION_CHANGED` without importing. Preserve the exact operation ID
+and payload for retries; inspect row counts and `hasFailures` before claiming
+success. Imported inactive records do not publish source or activate checkout.
+
 `frontpage_search_files` supports `regex:true`, context and path filters. Regex
 runs with a hard time limit; narrow the path or simplify a timed-out expression.
 `frontpage_analytics_sql` uses Business read access and the same guarded,
@@ -426,9 +441,24 @@ Editor/Admin identity. Byte windows are for bounded inspection; full downloads
 fetch the native file once. Never share the link or use a native signed-file
 credential. Source ZIP downloads keep their separate export tool and bounds.
 
+## Stock photos and videos
+
+Use `frontpage_search_stock_media` with `slug`, `query`, `kind` (`photo` or
+`video`) and optional `page`/`order`. Follow `hasNext` and page pagination.
+Color and orientation filters apply to photos only. Search requires source-read
+consent and an Editor/Admin site role.
+
+Copy the chosen result's `kind`, `provider` and `id` into
+`frontpage_import_stock_media` with the same slug and a stable `operationId`.
+Import requires source-edit consent and uses the existing native storage and
+video preparation services. Retry only the identical operation ID and input.
+Use its returned `sitePath`, `prepared` and `warning`; do not invent a provider
+URL or assume preparation succeeded. Import does not edit source or publish.
+Metadata and thumbnails do not prove that the assistant watched a video.
+
 ## Common catalog release
 
-Server 0.15.0 has one 339-tool full catalog for every client, including 102 named
+Server 0.16.0 has one 341-tool full catalog for every client, including 102 named
 People/email operations and 24 Payments tools. Booking/agent consent controls
 their families equally. Use only tools advertised by the current connection;
 provider package and hosted-catalog approval are separate steps.
