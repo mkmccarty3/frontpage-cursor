@@ -143,7 +143,8 @@ restores still build previews without publishing.
 
 Use frontpage_get_site_status to inspect publication and its publicationVersion.
 Use frontpage_publish_site only for the exact inspected revision's ready,
-immutable preview; pass expectedRevision and expectedPublicationVersion.
+immutable preview. Set expectedRevision to that source revision and
+expectedPublicationVersion to the publicationVersion returned by the status read.
 frontpage_unpublish_site takes the live site offline and requires Admin.
 A publish can also republish an offline site. Active agents, experiments,
 splits, unverifiable builds and changed review state block these operations.
